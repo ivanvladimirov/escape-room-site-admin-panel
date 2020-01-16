@@ -1,4 +1,4 @@
-My biggest project so far using mostly imperative style js
+My biggest project so far, using mostly imperative style js
 
 Working admin panel with a lot of functionality:
 
