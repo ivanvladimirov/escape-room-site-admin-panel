@@ -1,0 +1,2367 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik&display=swap&subset=cyrillic');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap&subset=cyrillic');
+
+/* KeyFrames */
+@keyframes appearing {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+body {
+    background: #1b1b1f;
+    color: #ffffff;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    transition: all 0.3s;
+}
+
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #f51d45 #1b1b1f;
+}
+
+html::-webkit-scrollbar {
+    width: 0px; /* For Chrome, Safari, and Opera */
+}
+
+h4 {
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: normal;
+    letter-spacing: 2px;
+    color: rgba(255,255,255, 0.5);
+    margin: 0;
+    cursor: default;
+}
+
+.welcomeAdmin {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.welcomeAdmin a,
+.confirmDialog a {
+    margin: 10px 0;
+    color: #f51d45;
+    text-transform: uppercase;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.confirmDialog input,
+.confirmDialog select,
+.confirmDialog textarea {
+    border-radius: 3px;
+    display: block;
+    background-color: #343239;
+    height: 32px;
+    width: 155px;
+    margin-bottom: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0;
+    outline: 0;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    padding: 0 12px;
+    font-size: 12px;
+}
+
+.confirmDialog input[type=number] {
+    width: 63px;
+    display: inline-block;
+}
+
+.confirmDialog input[type=radio] {
+    display: inline-block;
+    width: initial;
+    height: initial;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.confirmDialog select {
+    width: 178px;
+    padding: 0 6px;
+}
+
+.confirmDialog .labels {
+    text-align: left;
+    padding: 0 16px;
+    margin-bottom: 10px;
+}
+
+.confirmDialog label {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-size: 12px;
+}
+
+.confirmDialog textarea {height: 80px; padding: 12px;}
+
+.modal {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    transition: all 0.3s;
+    justify-content: center;
+    align-items: center;
+    z-index: 5000;
+    background-color: #1b1b1f;
+}
+
+.modal .modalContainer {
+    min-width: 550px;
+    max-height: 400px;
+    background-color: #232228;
+    padding: 60px 45px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    border-bottom: 3px solid #f51d45;
+    box-shadow: 0px 0px 15px 2px #0f0f12;
+    position: relative;
+    z-index: 11;
+}
+
+.modal .modalContainer .heading {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin: 0 auto;
+    font-size: 17px;
+    padding-bottom: 60px;
+}
+
+.modal .modalContainer input {
+    border-radius: 34px;
+    display: block;
+    background-color: #201f24;
+    height: 34px;
+    width: 200px;
+    margin-bottom: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0;
+    outline: 0;
+    color: #3c3c44;
+    font-family: 'Roboto', sans-serif;
+    padding: 0 12px;
+    font-size: 12px;
+}
+
+.modal .modalContainer .half .textField {
+    padding-left: 21px;
+}
+
+.modal .modalContainer button {
+    width: 224px;
+    height: 34px;
+    display: block;
+    border-radius: 34px;
+    background: #f51d45;
+    cursor: pointer;
+    color: white;
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    border: 0;
+    outline: 0;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    transition: all 0.3s;
+}
+
+.modal .modalContainer button:hover {
+    transition: all 0.3s;
+    background: white;
+    color: #f51d45;
+}
+
+.headerBar {
+    width: 100%;
+    background: #131217;
+    height: 47px;
+    line-height: 47px;
+    font-size: 13px;
+    display: flex;
+}
+
+.headerBar .logo {
+    cursor: pointer;
+    width: 47px;
+    height: 47px;
+    background-color: #f51d45;
+    background-image: url('../img/logo-transparent.png');
+    background-size: 35px 35px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.headerBar .heading {
+    height: 47px;
+    line-height: 47px;
+    margin-left: 15px;
+    color: #76747d;
+}
+
+.headerBar .buttons {
+    margin-left: auto;
+}
+
+.headerBar .buttons a {
+    padding: 8px 12px;
+    background: #f51d45;
+    color: white;
+    text-decoration: none;
+    border-radius: 3px;
+    margin-right: 15px;
+}
+
+.headerBar .buttons a.selected {
+    background: white;
+    color: #f51d45;
+}
+
+.headerBar .settings {
+    margin-right: 10px;
+}
+
+.headerBar .settings .logout {
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.headerBar .settings .logout:hover {
+    transition: all 0.3s;
+    color: #f51d45;
+}
+
+.content, .allGroupsDiv, .dashboardDiv, .monthlyTables {
+    padding: 20px;
+}
+
+.content {
+    width: 100%;
+}
+
+/* Money */
+
+.moneyDiv {
+    animation: 1.4s appearing ease-in-out;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.moneyDiv .schedule {
+    display: flex;
+    flex-wrap: wrap;
+    background: #232228;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 2px #161519;
+    border-bottom: 3px solid #f51d45;
+}
+
+.moneyDiv .schedule .scheduleItem {
+    font-size: 13px;
+    justify-content: space-between;
+    margin-right: 9px;
+    padding: 4px;
+    box-sizing: border-box;
+    margin-bottom: 4px;
+    cursor: pointer;
+    border-bottom: 1px solid rgba(255,255,255, 0.07);
+}
+
+.moneyDiv .schedule .scheduleItem .heading {
+    margin-bottom: 3px;
+}
+
+.allMoney {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px 0;
+    position: relative;
+}
+
+.allMoney .moneyNet,
+.allMoney .moneyGross,
+.allMoney .moneyExpenses {
+    width: 310px;
+    height: 135px;
+    display: block;
+    border-radius: 4px;
+    position: relative;
+    z-index: 1001;
+    overflow: hidden;
+    padding: 20px 0 0 25px;
+    box-sizing: border-box;
+}
+
+.allMoney .moneyNet {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#3acbba+0,109ad2+100 */
+    background: #3acbba; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #3acbba 0%, #109ad2 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  #3acbba 0%,#109ad2 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  #3acbba 0%,#109ad2 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3acbba', endColorstr='#109ad2',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.allMoney .moneyGross {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ff8a5f+0,fe63ab+100 */
+    background: #ff8a5f; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #ff8a5f 0%, #fe63ab 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  #ff8a5f 0%,#fe63ab 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  #ff8a5f 0%,#fe63ab 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8a5f', endColorstr='#fe63ab',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+.allMoney .moneyExpenses {
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ba5ebd+0,8363f9+100 */
+    background: #ba5ebd; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  #ba5ebd 0%, #8363f9 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  #ba5ebd 0%,#8363f9 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  #ba5ebd 0%,#8363f9 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ba5ebd', endColorstr='#8363f9',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+
+.allMoney .moneyNet::after,
+.allMoney .moneyGross::after,
+.allMoney .moneyExpenses::after {
+    position: absolute;
+    right: -10px;
+    bottom: -20px;
+    font-family: "Font Awesome 5 Free"; 
+    font-weight: 900; 
+    font-size: 100px;
+    color: rgba(255,255,255, 0.35);
+}
+
+.allMoney .moneyNet::after {
+    content: "\f53a";
+}
+
+.allMoney .moneyGross::after {
+    content: "\f53b";
+}
+
+.allMoney .moneyExpenses::after {
+    content: "\f07a";
+}
+
+.allMoney .additionalMoneyInformation {
+    width: 90%;
+    background: #232228;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 2px #161519;
+    padding: 35px;
+    margin: 0 auto;
+    font-size: 13px;
+    border-bottom: 3px solid #f51d45;
+    position: relative;
+    top: -70px;
+    padding-top: 110px;
+    margin-bottom: -70px;
+    box-sizing: border-box;
+}
+
+.allMoney .additionalMoneyInformation .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.allMoney .additionalMoneyInformation .container .operators .operator {
+    width: 300px;
+    height: 65px;
+    border-bottom: 1px solid #34313b;
+    padding-top: 18px;
+    padding-left: 15px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.allMoney .additionalMoneyInformation .container .operators .operator:last-child {
+    border-bottom: 0;
+}
+
+.allMoney .additionalMoneyInformation .container .operators .operator .color {
+    width: 8px;
+    height: 28px;
+    position: absolute;
+    top: 19px;
+    left: 0;
+}
+
+.allMoney .additionalMoneyInformation .container .operators .operator .name {
+    font-size: 13px;
+}
+
+.allMoney .additionalMoneyInformation .container .operators .operator .totalMoney {
+    position: absolute;
+    right: 0;
+    top: 23px;
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+}
+
+.allMoney .additionalMoneyInformation .container .operators .operator .totalMoney:after {
+    content: " лв.";
+}
+
+.allMoney .additionalMoneyInformation .container .operators .operator .totalGroups {
+    display: block;
+    color: #5d5c63;
+    font-size: 10px;
+    margin-top: 3px;
+}
+
+.allMoney .additionalMoneyInformation .container .operators .editTeam span {
+    text-transform: uppercase;
+    cursor: pointer;
+    color: #f51d45;
+    font-size: 9px;
+    float: right;
+    margin-top: 5px;
+}
+
+.calendar .editTeamOperatorsAndColors .teamMember {
+    cursor: pointer;
+}
+
+.calendar .editTeamOperatorsAndColors .teamMember .deleteButton i {
+    color: transparent;
+    transition: all 0.2s;
+}
+
+.calendar .editTeamOperatorsAndColors .teamMember:hover .deleteButton i {
+    color: greenyellow;
+    transition: all 0.2s;
+}
+
+.editTeamOperatorsAndColors .teamMember {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    height: 25px;
+}
+
+.editTeamOperatorsAndColors .teamMember div {
+    display: flex;
+    align-items: center;
+}
+
+.editTeamOperatorsAndColors .teamMember div .operatorColor {
+    display: block;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+}
+
+.editTeamOperatorsAndColors .teamMember div .operatorColor .inputColor::-moz-color-swatch {
+    border-color: transparent;
+    border-radius: 50%;
+}
+
+.editTeamOperatorsAndColors .teamMember div .operatorColor .inputColor {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.editTeamOperatorsAndColors .teamMember div .operator {
+    margin-left: 7px;
+    text-transform: uppercase
+}
+
+.editTeamOperatorsAndColors .teamMember .deleteButton {
+    color: red;
+    cursor: pointer;
+}
+
+.addOperator {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    margin-top: 10px;
+    border-top: 1px solid #2d2d2d;
+}
+
+.addOperator .addOperatorInput {
+    padding: 0 6px;
+    background-color: transparent;
+    font-size: 13px;
+    text-transform: uppercase;
+    width: 174px;
+}
+
+.addOperator .colorInput::-moz-color-swatch {
+    border-color: transparent;
+    border-radius: 50%;
+}
+
+.addOperator .colorInput {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    margin: 0;
+}
+
+.addOperator input {
+    margin: 0;
+}
+
+.addOperator .addOperatorButton {
+    cursor: pointer;
+}
+
+.moneyFromGroup {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    border-top: 1px solid #2d2d2d;
+    border-bottom: 1px solid #2d2d2d;
+    text-transform: uppercase;
+    padding: 6px 0;
+    color: #919093;
+}
+
+.moneyFromGroup input {
+    padding: 0;
+    margin: 0;
+    height: 20px;
+    width: 20px;
+    background-color: transparent;
+    text-align: center;
+}
+
+.allMoney .additionalMoneyInformation .container .expenses {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.allMoney .additionalMoneyInformation .container .expenses .expensesItems {
+    height: 100%;
+    max-height: 293px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    color: #232228;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    scrollbar-width: thin;
+    scrollbar-color: #f51d45 #1b1b1f;
+}
+
+.allMoney .additionalMoneyInformation .container .expenses .expensesItems .item {
+    position: relative;
+    color: white;
+    height: 35px;
+    line-height: 35px;
+    vertical-align: middle;
+    border-bottom: 1px solid #34313b;
+    padding-left: 20px;
+}
+
+.allMoney .additionalMoneyInformation .container .expenses .expensesItems .item .itemColor {
+    position: absolute;
+    left: 0;
+    top: 11px;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+}
+
+.allMoney .additionalMoneyInformation .container .expenses .expensesItems .item .itemDelete {
+    cursor: pointer;
+    margin-left: 7px;
+    transition: all 0.2s;
+}
+
+.allMoney .additionalMoneyInformation .container .expenses .expensesItems .item:hover .itemDelete i {
+    color: #be0000;
+    transition: all 0.2s;
+}
+
+.allMoney .additionalMoneyInformation .container .expenses .expensesItems .item .itemDelete i {
+    color: transparent;
+    transition: all 0.2s;
+}
+
+.allMoney .additionalMoneyInformation .container .expenses .expensesItems .item .itemPrice {
+    float: right;
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+    clear: both;
+}
+
+.allMoney .additionalMoneyInformation .container .expenses .expensesItems .item .itemPrice:after {
+    content: " лв.";
+}
+
+.allMoney .additionalMoneyInformation .container .expenses .expensesAddItem {
+    display: flex;
+    justify-content: center;
+    height: 25px;
+}
+
+.allMoney .additionalMoneyInformation .container .expenses .expensesAddItem input {
+    border: 0;
+    outline: 0;
+    height: 100%;
+    background: #313241;
+    border-radius: 2px;
+    color: #8591a3;
+    margin-right: 8px;
+    box-sizing: border-box;
+    padding: 0 8px;
+    font-family: 'Rubik', sans-serif;
+}
+
+.allMoney .additionalMoneyInformation .container .expenses .expensesAddItem input.itemTextInput {
+    width: 190px;
+}
+
+.allMoney .additionalMoneyInformation .container .expenses .expensesAddItem input.itemPriceInput {
+    width: 50px;
+    text-align: center;
+}
+
+.allMoney .additionalMoneyInformation .container .expenses .expensesAddItem button.itemAdd {
+    border-radius: 50%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    padding: 0;
+}
+
+.allMoney .additionalMoneyInformation .container .expenses .expensesAddItem button.itemAdd i {
+    color: #8591a3;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.allMoney div .heading {
+    text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.allMoney div .priceTag {
+    font-family: 'Rubik', sans-serif;
+    margin-top: 20px;
+    font-size: 30px;
+}
+
+.allMoney div .comparison {
+    font-family: 'Rubik', sans-serif;
+    margin-top: 8px;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.monthlyTables table.reservationsList {
+    opacity: 0;
+    animation: 1.4s appearing ease-in-out;
+    animation-delay: 0.2s;
+    animation-fill-mode: forwards;
+}
+
+table.reservationsList {
+    background: #232228;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 2px #161519;
+    padding: 20px;
+    font-size: 13px;
+    width: 100%;
+    border-bottom: 3px solid #f51d45;
+    border-spacing: 0;
+    opacity: 0;
+    animation: 1.4s appearing ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+table.reservationsList th,
+.reservationHeadText,
+.reservationBodyText {
+    text-transform: uppercase;
+    color: #76747d;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    margin-right: 100px;
+    text-align: left;
+    font-size: 13px;
+}
+
+.reservationHeadText {
+    margin-right: 0px;
+    width: 100px;
+    display: inline-block;
+}
+
+.reservationBodyText {
+    margin-right: 0;
+    color: #fff;
+}
+
+td {
+    height: 25px;
+    line-height: 25px;
+}
+
+tr.tableHeadRow {
+    background: transparent !important;
+}
+
+tr {
+    transition: all 0.15s;
+}
+
+tr:hover {
+    background: #3a3943;
+    transition: all 0.1s;
+}
+
+table.reservationsList tr {
+    padding: 0;
+    margin: 0;
+}
+
+table.reservationsList td i {
+    font-size: 20px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+table.reservationsList td i.confirmation {
+    font-size: 18px;
+    color: #f51d45;
+    margin-left: 14px;
+}
+
+table.reservationsList td i.fa-check-circle {
+    color: green;
+}
+
+.firstOperator,
+.secondOperator {
+    display: inline-block;
+    position: relative;
+}
+
+tr:hover .operatorReload{
+    visibility: visible;
+    color: #76747d;
+}
+
+.operatorReload {
+    visibility: hidden;
+    font-size: 14px !important;
+}
+
+.firstOperatorText, .operatorText {
+    width: 57px;
+    display: inline-block;
+}
+
+select.operator {
+    border: 0;
+    width: 57px;
+    background: transparent;
+    color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: -1px;
+    text-overflow: '';
+}
+
+#showAllInfo {
+    display: none;
+}
+
+#editBooking,
+#deleteBooking,
+#confirmEditBooking,
+#showAllInfo {
+    height: 20px;
+    box-sizing: border-box;
+    padding: 0 5px;
+    line-height: 20px;
+    background-color: white;
+    color: black;
+    font-size: 11px;
+    border-radius: 2px;
+}
+
+#editBooking span,
+#deleteBooking span,
+#confirmEditBooking span,
+#showAllInfo span {
+    font-family: 'Roboto', sans-serif;
+    font-weight: normal;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+
+#confirmEditBooking {
+    background: green;
+    color: white;
+}
+
+.editing {
+    animation: breathing 1s infinite ease-in-out;
+    background: rgba (245,29,69,0.5);
+}
+
+@keyframes breathing {
+    0% {background: rgba(245,29,69,0.5)}
+    50% {background: rgba(245,29,69,0.3)}
+    100% {background: rgba(245,29,69,0.5)}
+}
+
+table.reservationsList input {
+    background: transparent;
+    color: white;
+    border: 0;
+    outline: 0;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+table.reservationsList .editInputPeople,
+table.reservationsList .editInputPeopleCurrent {
+    width: 8px;
+}
+
+table.reservationsList .editInputMoney,
+table.reservationsList .editInputMoneyCurrent {
+    width: 24px;
+}
+
+table.reservationsList .editInputEmail,
+table.reservationsList .editInputEmailCurrent {
+    width: 100%;
+}
+
+table.reservationsList .editInputPhone,
+table.reservationsList .editInputPhoneCurrent {
+    width: 130px;
+}
+
+table.reservationsList .editInputLanguage,
+table.reservationsList .editInputLanguageCurrent {
+    width: 80px;
+}
+
+table.reservationsList .editInputDiscount,
+table.reservationsList .editInputDiscountCurrent,
+table.reservationsList .editInputTimeInRoom,
+table.reservationsList .editInputTimeInRoomCurrent {
+    width: 100px;
+}
+
+.addAdminRole {
+    display: block;
+}
+
+.confirmDialog {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 5010;
+    background: rgba(0,0,0,0.9);
+    transition: all 0.3s;
+    justify-content: center;
+    align-items: center;
+    animation: opacity 0.3s;
+}
+
+@keyframes opacity {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.confirmDialog .container {
+    min-width: 300px;
+    max-height: 400px;
+    background-color: #232228;
+    padding: 30px 45px;
+    box-sizing: border-box;
+    border-bottom: 2px solid #f51d45;
+    box-shadow: 0px 0px 15px 2px black;
+    position: relative;
+    z-index: 11;
+    animation: move 0.4s ease-in-out;
+    text-align: center;
+}
+
+.confirmDialog .container .heading {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin: 0 auto;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #2d2d2d;
+    padding-bottom: 5px;
+    width: 85%;
+}
+
+.confirmDialog .container .accept,
+.confirmDialog .container .decline {
+    border: 1px solid white;
+    display: inline-block;
+    font-size: 11px;
+    padding: 8px 15px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.confirmDialog .container .accept {
+    margin-right: 10px;
+    border: 1px solid #f51d45;
+    background: #f51d45;
+}
+
+@keyframes move {
+    0% {transform: scale(0.9);}
+    100% {transform: scale(1);}
+}
+
+/* Tables */
+.todaysMonth {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 20px;
+    font-weight: 400;
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.todaysMonth .todaysMonthSelect {
+    cursor: pointer;
+    position: relative;
+}
+
+.todaysMonth .todaysMonthSelect .allMonths {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background: #313241;
+    border-radius: 2px;
+    padding: 0 5px;
+    z-index: 2002;
+    min-width: 180px;
+    display: none;
+}
+
+.todaysMonth .todaysMonthSelect .allMonths .month {
+    display: block;
+    color: #8591a3;
+    border-bottom: 1px solid #393a4b !important;
+    border: 0;
+    outline: 0;
+    font-size: 14px;
+    padding: 7px;
+}
+
+.todaysMonth .todaysMonthSelect .allMonths .month:last-child {
+    border-bottom: 0;
+}
+
+.todaysMonth .dateInput:first-child {
+    margin-left: 20px;
+}
+
+.todaysMonth .dateInput,
+.dateSearch {
+    font-family: 'Roboto', sans-serif;
+    background: #313241;
+    border-radius: 2px;
+    margin-right: 10px;
+    padding: 0 5px;
+    height: 30px;
+    cursor: pointer;
+    border: 0;
+    outline: 0;
+    color: #8591a3;
+    animation: 1.0s appearing ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+.dateSearch {
+    cursor: text;
+    margin-bottom: 10px;
+}
+
+.editDates {
+    color: #686ecf;
+    cursor: pointer;
+}
+
+span.flex {
+    display: flex;
+    align-items: center;
+}
+
+/* Two Cols Div */
+.twoColumnsDiv {
+    display: flex;
+    justify-content: space-between;
+}
+
+.twoColumnsDiv div.tasksDiv {
+    width: 49%;
+    animation: 1.4s appearing ease-in-out;
+    animation-delay: 0.2s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+.twoColumnsDiv div.chartDiv {
+    width: 49%;
+    animation: 1.4s appearing ease-in-out;
+    animation-delay: 0.4s;
+    opacity: 0;
+    animation-fill-mode: forwards;
+}
+
+/* Chart */
+.chart {
+    position: relative;
+    height: 300px;
+    background: #232228;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 2px #161519;
+    padding: 20px;
+    font-size: 13px;
+    border-bottom: 3px solid #f51d45;
+    border-spacing: 0;
+    display: block;
+    overflow: hidden;
+}
+
+.chart .content {
+    position: relative;
+    left: -20px;
+    height: 300px;
+    padding-right: 20px;
+}
+
+/* Tasks */
+
+.tasks {
+    display: flex;
+    justify-content: space-between;
+    height: 300px;
+    background: #232228;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 2px #161519;
+    padding: 20px;
+    font-size: 13px;
+    border-bottom: 3px solid #f51d45;
+    position: relative;
+}
+
+.tasks .unfinishedTasks {
+    overflow: hidden;
+}
+
+.tasks .unfinishedTasks {
+    width: 50%;
+    padding-right: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #f51d45 #1b1b1f;
+}
+
+.tasks .finishedTasks {
+    width: 50%;
+    padding-left: 10px;
+    overflow: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: #f51d45 #1b1b1f;
+}
+
+.tasks .tasksTable {
+    width: 100%;
+    padding-top: 10px;
+}
+
+.tasks .tasksTable tr.task {
+    position: relative;
+}
+
+.tasks .tasksTable tr.task .controls {
+    position: absolute;
+    top: 27px;
+    right: 35px;
+    background-color: #232228;
+    cursor: default;
+    color: rgba(255,255,255, 0.07);
+    opacity: 0;
+    transition: all 0.7s;
+}
+
+.tasks .tasksTable tr.task:hover .controls {
+    transition: all 0.2s;
+    opacity: 1;
+}
+
+.tasks .tasksTable tr.task .controls i {
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.tasks .tasksTable tr.task .controls i:first-child {
+    color: #3ad1be;
+}
+
+.tasks .tasksTable tr.task .controls i:last-child {
+    color: #fb5235;
+}
+
+.tasks .tasksTable tr.task td {
+    padding-top: 15px;
+}
+
+.tasks .tasksTable tr.taskDate td {
+    border-bottom: 1px solid rgba(255,255,255, 0.07);
+    padding-bottom: 15px;
+}
+
+.tasks .tasksTable tr:hover {
+    background: transparent;
+}
+
+.tasks .tasksTable tr td {
+    height: 18px;
+    line-height: 18px;
+}
+
+.tasks .task {
+    position: relative;
+}
+
+.tasks .task .isUrgentfalse {
+    display: inline-block;
+    position: absolute;
+    top: 29px;
+    right: 5px;
+    background: #3ad1be;
+    -webkit-box-shadow: 0px 4px 8px 0px #3ad1be;
+    -moz-box-shadow: 0px 4px 8px 0px #3ad1be;
+    box-shadow: 0px 4px 8px 0px #3ad1be;
+    border-radius: 50%;
+    height: 12px;
+    width: 12px;
+    margin: 0;
+    cursor: pointer;
+    z-index: 1000;
+}
+
+.tasks .task .isUrgenttrue {
+    display: inline-block;
+    position: absolute;
+    top: 29px;
+    right: 5px;
+    background: red;
+    -webkit-box-shadow: 0px 4px 8px 0px red;
+    -moz-box-shadow: 0px 4px 8px 0px red;
+    box-shadow: 0px 4px 8px 0px red;
+    border-radius: 50%;
+    height: 12px;
+    width: 12px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.tasks button {
+    background: transparent;
+    outline: 0;
+    border: 0;
+    position: absolute;
+    bottom: 15px;
+    right: 7px;
+    z-index: 1001;
+}
+
+.tasks .addTask {
+    transition: all 0.3s;
+    cursor: pointer;
+    font-size: 30px;
+    color: #f51d45;
+}
+
+.tasks .addTask:hover {
+    color: white;
+    transition: all 0.3s;
+}
+
+.tasks .noTasks {
+    justify-content: center;
+    align-items: center;
+    height: 270px;
+    display: flex;
+    color: rgba(255,255,255, 0.15);
+}
+
+.tasks .noTasks i {
+    display: block;
+    font-size: 100px;
+    margin-bottom: 10px;
+    color: rgba(255,255,255, 0.05);
+}
+
+/* Helper */
+
+.hidden {
+    display: none;
+}
+
+@media all and (max-width: 1420px) {
+    .hiddenOnSmallerDesktops {
+        display: none;
+    }
+
+    #showAllInfo {
+        display: inline-block;
+    }
+}
+
+.showOnMobile {
+    display: none;
+}
+
+@media all and (max-width: 1000px) {
+    .showOnMobile {
+        display: initial;
+    }
+
+    .hiddenOnMobile {
+        display: none !important;
+    }
+
+    .headerBar .buttons {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        height: 50px;
+        justify-content: space-around;
+        background: #232228;
+        box-sizing: border-box;
+        padding: 8px 0;
+        z-index: 5006;
+        border-top: 2px solid #f51d45;
+    }
+
+    .headerBar .buttons a {
+        margin: 0;
+        padding: 0;
+        line-height: initial;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 10px;
+        background: none;
+    }
+
+    .headerBar .buttons a.selected {
+        background: none;
+        outline: 0;
+    }
+
+    .headerBar .buttons a i {
+        display: block;
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+
+    .headerBar .settings {
+        margin-left: auto;
+        margin-right: 10px;
+    }
+
+    .todaysMonth .dateInput:first-child {
+        margin-left: 0;
+    }
+
+    .todaysMonth .todaysMonthSelect {
+        margin-bottom: 5px;
+    }
+
+    table.reservationsList {
+        border-collapse:separate; 
+        margin-bottom: 80px;
+    }
+
+    table.reservationsList .tableHeadRow {
+        display: none;
+    }
+
+    table.reservationsList tr.reservations {
+        display: flex;
+        flex-direction: column;
+        padding: 10px 15px;
+        padding-bottom: 25px;
+        position: relative;
+        border-radius: 4px;
+        margin-bottom: 30px;
+        background: #3a3943;
+    }
+
+    table.reservationsList tr.reservations td.dash:nth-child(2) {
+        position: absolute;
+        right: -20px;
+    }
+
+    table.reservationsList tr.reservations td.dash:nth-child(1)::before {
+        content: "Date: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.dash:nth-child(3)::before {
+        content: "Name: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.dash:nth-child(4)::before {
+        content: "Phone: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.dash:nth-child(5)::before {
+        content: "People: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.dash:nth-child(6)::before {
+        content: "Email: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList .editInputEmail, table.reservationsList .editInputEmailCurrent {
+        width: initial;
+    }
+
+    table.reservationsList tr.reservations td.dash:nth-child(7)::before {
+        content: "Team Name: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.dash:nth-child(8)::before {
+        content: "Game Mode: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.dash:nth-child(9)::before {
+        content: "Made On: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.dash:nth-child(10)::before {
+        content: "Language: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.dash:nth-child(11)::before {
+        content: "Discount: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.dash:nth-child(12) {
+        display: flex;
+        justify-content: space-around;
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 100%;
+    }
+
+    table.reservationsList tr.reservations a {
+        width: 30px;
+        height: 30px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    table.reservationsList tr.reservations a::before {
+        content: "\f095";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
+        background: #f51d45;
+        border-radius: 50%;
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        color: white !important;
+        text-align: center;
+        line-height: 28px;
+        box-shadow: 0px 0px 8px #2b2a32;
+        cursor: pointer;
+
+    }
+
+    table.reservationsList .editInputPhoneCurrent {
+        text-indent: -9999px;
+        cursor: pointer;
+
+    }
+
+    #editBooking, #deleteBooking, #confirmEditBooking, #showAllInfo {
+        background: #f51d45;
+        border-radius: 50%;
+        display: inline-block;
+        font-size: 13px;
+        width: 30px;
+        height: 30px;
+        color: white !important;
+        text-align: center;
+        line-height: 28px;
+        box-shadow: 0px 0px 8px #2b2a32;
+    }
+
+    #editBooking span, #deleteBooking span, #confirmEditBooking span, #showAllInfo span {
+        display: none;
+    }
+
+    #deleteBooking::before {
+        content: "\f2ed";
+    }
+
+    table.reservationsList td i.fa-check-circle,
+    table.reservationsList td i.fa-minus-circle {
+        background: #f51d45;
+        border-radius: 50%;
+        display: block;
+        width: 30px;
+        height: 30px;
+        color: white !important;
+        text-align: center;
+        line-height: 28px;
+        box-shadow: 0px 0px 8px #2b2a32;
+    }
+
+    table.reservationsList td i.fa-check-circle {
+        background: green;
+    }
+
+    table.reservationsList td i.fa-minus-circle::before {
+        content: "\f068";
+        font-size: 14px;
+    }
+
+    table.reservationsList td i.fa-check-circle::before {
+        content: "\f00c";
+        font-size: 14px;
+    }
+
+    table.reservationsList input {
+        max-width: 142px;
+    }
+
+    /* Monthly Tables */ 
+    
+    table.reservationsList tr.reservations td.monthlyTables:nth-child(1)::before {
+        content: "#: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.monthlyTables:nth-child(2)::before {
+        content: "Team Name: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.monthlyTables:nth-child(3)::before {
+        content: "Date: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.monthlyTables:nth-child(4)::before {
+        content: "Time: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.monthlyTables:nth-child(5)::before {
+        content: "Money: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.monthlyTables:nth-child(6)::before {
+        content: "Operators: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.monthlyTables:nth-child(7)::before {
+        content: "Game Mode: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    table.reservationsList tr.reservations td.monthlyTables:nth-child(8)::before {
+        content: "Language: ";
+        color: #76747d;
+        text-transform: uppercase;
+    }
+
+    .allMoney {
+        justify-content: space-around;
+    }
+
+    .allMoney .moneyNet, .allMoney .moneyGross, .allMoney .moneyExpenses {margin-bottom: 20px;}
+    .allMoney .additionalMoneyInformation .container {flex-direction: column;}
+    .allMoney .additionalMoneyInformation .container .operators .operator {width: initial;}
+    .allMoney .additionalMoneyInformation .container .expenses {width: initial; margin-top: 30px;}
+    .allMoney .additionalMoneyInformation .container .expenses .expensesItems {width: initial;}
+
+    /* Dashboard */
+
+    .allGroupsDiv table.reservationsList {
+        margin-bottom: 0;
+    }
+
+    .allGroupsDiv .twoColumnsDiv {
+        flex-direction: column;
+    }
+
+    .twoColumnsDiv div.tasksDiv {
+        width: 100%;
+    }
+
+    .twoColumnsDiv div.tasksDiv .tasks {
+        flex-direction: column;
+        height: initial;
+    }
+
+    .twoColumnsDiv div.tasksDiv .tasks .unfinishedTasks,
+    .twoColumnsDiv div.tasksDiv .tasks .finishedTasks {
+        width: 100%;
+    }
+
+    .twoColumnsDiv div.chartDiv {
+        width: 100%;
+        margin-bottom: 80px;
+    }
+}
+
+/* Calendar */
+/* Reservation */
+
+.reservation {
+    padding-top: 25px;
+    margin-bottom: 40px;
+}
+
+.reservation .calendarTable {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    margin-top: 20px;
+    width: 1100px;
+    background: #232228;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 2px #161519;
+    padding: 20px;
+    font-size: 13px;
+    border-bottom: 3px solid #f51d45;
+    border-spacing: 0;
+    opacity: 0;
+    animation: 1.4s appearing ease-in-out;
+        animation-fill-mode: none;
+    animation-fill-mode: forwards;
+    margin: 0 auto;
+    margin-top: 45px;
+}
+
+.reservation .calendarTable .buttonSection {
+	text-align: left;
+	position: absolute;
+	top: -45px;
+	height: 45px;
+	padding: 8px 10px 8px 10px;
+	box-sizing: border-box;
+    background: #232228;
+    border-radius: 3px 3px 0 0;
+    box-shadow: 0 -5px 5px -2px #161519;
+}
+
+.reservation .calendarTable .buttonSection button {
+    height: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    color: white;
+    background: #f51d45;
+    border-radius: 2px;
+    outline: 0;
+    border: 0;
+    cursor: pointer;
+    text-shadow: 0px 1px 1px black;
+    margin: 0 2px;
+    min-width: 140px;
+}
+
+.reservation .calendarTable .day {
+	width: 130px;
+	height: 100%;
+	display: inline-block;
+	margin-right: 15px;
+    text-shadow: 0px 1px 1px black;
+    vertical-align: top;
+}
+
+.reservation .calendarTable .day .availableOperators {
+    border-radius: 3px;
+    border: 1px solid #f51d45;
+    box-sizing: border-box;
+    padding: 5px 0px;
+    margin-bottom: 10px;
+    height: 27px;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.reservation .calendarTable .day .weekDay {
+	text-transform: uppercase;
+	color: #f2f2f2;
+	letter-spacing: 0.04em;
+	font-weight: bold;
+	margin-bottom: 5px;
+	font-size: 15px;
+}
+
+.reservation .calendarTable .day .date {
+	overflow: hidden;
+	color: #666666;
+	font-size: 12px;
+	margin-bottom: 5px;
+}
+
+.reservation .calendarTable .day .hours div {
+	color: white;
+	display: block;
+    line-height: 30px;
+    font-size: 14px;
+    margin: 0 auto;
+    text-decoration: none;
+	width: 100px;
+    margin-bottom: 4px;
+    cursor: pointer;
+}
+
+.reservation .calendarTable .day .hours div.booked {
+    color: white !important;
+    background: #ff8a5f !important;
+    background: -moz-linear-gradient(-45deg, #ff8a5f 0%, #fe63ab 100%) !important;
+    background: -webkit-linear-gradient(-45deg, #ff8a5f 0%,#fe63ab 100%) !important;
+    background: linear-gradient(135deg, #ff8a5f 0%,#fe63ab 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8a5f', endColorstr='#fe63ab',GradientType=1 ) !important;
+	/*border: 1px solid #7a1b1b;*/
+}
+
+.reservation .calendarTable .day .hours div.passed {
+    background: rgb(24,42,51) !important; /* Old browsers */
+    background: -moz-linear-gradient(-45deg,  rgba(24,42,51,1) 0%, rgba(3,9,12,1) 100%) !important; /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg,  rgba(24,42,51,1) 0%,rgba(3,9,12,1) 100%) !important; /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg,  rgba(24,42,51,1) 0%,rgba(3,9,12,1) 100%) !important; /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#182a33', endColorstr='#03090c',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    color: white !important;
+}
+
+.reservation .calendarTable .day .hours div.hour {
+    color: white;
+    background-color: #3acbba;
+    background: -moz-linear-gradient(-45deg, #3acbba 0%, #109ad2 100%);
+    background: -webkit-linear-gradient(-45deg, #3acbba 0%,#109ad2 100%);
+    background: linear-gradient(135deg, #3acbba 0%,#109ad2 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3acbba', endColorstr='#109ad2',GradientType=1 );
+    /*border: 1px solid white;*/
+    border-radius: 2px;
+    box-sizing: border-box;
+    transition: background-color 1s;
+    height: 30px !important;
+}
+
+.reservation .calendarTable .day .hours div.hour:hover {
+    border: 2px solid white;
+    height: 30px;
+    line-height: 26px;
+}
+
+.reservation .calendarTable .day .hours div.booked:hover {
+    border: 2px solid white;
+}
+
+.reservation .calendarTable .day .hours div.fake {
+    background: #ba5ebd !important;
+    background: -moz-linear-gradient(-45deg, #ba5ebd 0%, #8363f9 100%) !important;
+    background: -webkit-linear-gradient(-45deg, #ba5ebd 0%,#8363f9 100%) !important;
+    background: linear-gradient(135deg, #ba5ebd 0%,#8363f9 100%) !important;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ba5ebd', endColorstr='#8363f9',GradientType=1 ) !important;
+}
+
+.reservation .calendarTable .arrow {
+	display: inline-block;
+	font-size: 16px;
+	color: white;
+	width: 20px;
+	margin-left: -4px;
+    margin-right: 15px;
+    transform: translateY(-50%);
+    top: 50%;
+    cursor: pointer;
+    position: absolute;
+}
+
+.reservation .calendarTable .prevWeek {
+    left: -30px;
+}
+.reservation .calendarTable .nextWeek {
+    right: -50px;
+}
+
+.reservation .calendarTable .arrow i {
+    font-size: 45px;
+    line-height: 40px;
+    color: white;
+    transition: 0.3s;
+}
+
+.reservation .calendarTable .arrow:hover i {
+    color: #be0000;
+    transition: 0.3s;
+}
+
+.reservation .calendarTable div.passed {
+    color: #424242 !important;
+}
+
+.error {
+    display: none;
+}
+
+.success {
+    display: block;
+    color: greenyellow;
+}
+
+.modalR {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 11;
+    background: rgba(0,0,0,0.9);
+    transition: all 0.3s;
+    justify-content: center;
+    align-items: center;
+    animation: opacity 0.3s;
+}
+
+@keyframes opacity {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+}
+
+.modalR .modalContainer {
+    max-width: 575px;
+    max-height: 450px;
+    background-color: #101010;
+    padding: 30px 45px;
+    box-sizing: border-box;
+    border-bottom: 2px solid #be0000;
+    box-shadow: 0px 0px 15px 2px black;
+    position: relative;
+    z-index: 11;
+    animation: move 0.4s ease-in-out;
+}
+
+@keyframes move {
+    0% {transform: scale(0.9);}
+    100% {transform: scale(1);}
+}
+
+.modalR .modalContainer .closeButton {
+    border: 1px solid #be0000;
+    position: absolute;
+    background-color: #101010;
+    top: -15px;
+    right: -15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    padding-left: 2px;
+    box-sizing: border-box;
+    line-height: 29px;
+    cursor: pointer;
+
+}
+
+.modalR .modalContainer .heading {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    margin: 0 auto;
+    font-size: 17px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #2d2d2d;
+    padding-bottom: 5px;
+    width: 85%;
+}
+
+.modalR .modalContainer .half {
+    display: inline-block;
+    width: 49%;
+    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
+    vertical-align: top;
+}
+
+.modalR .modalContainer .half input,
+.modalR .modalContainer .half select{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 25px;
+    margin-top: 8px;
+    width: 155px;
+    height: 30px;
+    background-color: #d3d3d3;
+    border: 0;
+    outline: 0;
+    box-sizing: border-box;
+    padding: 4px 8px;
+    color: black;
+}
+
+.modalR .modalContainer .half .textField {
+    padding-left: 21px;
+}
+
+.tooltip {
+    position: relative;
+    cursor: pointer;
+}
+
+.tooltip .tooltipText {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    top: -55px;
+    max-width: 200px;
+    width: 232px;
+    background: rgb(56, 56, 56);
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px 7px;
+    box-sizing: border-box;
+    left: 0%;
+    transform: translateX(-50%);
+    transition: all 0.3s;
+}
+
+.tooltip:hover .tooltipText {
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s;
+}
+
+.modalR .modalContainer #form-messages {
+    font-size: 13px;
+    color: white;
+    display: none !important;
+}
+
+.modalR .modalContainer .checkboxText {
+    font-size: 13px;
+    height: 28px;
+    float: right;
+    line-height: 28px;
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.modalR .modalContainer .checkboxText a { 
+    color: white;
+}
+
+.modalR .modalContainer button {
+    width: 88px;
+    height: 28px;
+    background: #be0000;
+    cursor: pointer;
+    color: white;
+    font-size: 13px;
+    font-family: 'Roboto', sans-serif;
+    border: 0;
+    outline: 0;
+    margin-top: 5px;
+    line-height: 27px;
+    float: right;
+}
+
+.modalR .chopper {
+    background-image: url('../img/chopper.png');
+    background-size: 600px 600px;
+    width: 600px;
+    height: 600px;
+    position: absolute;
+    animation: chopper 0.3s ease-in;
+    animation-delay: 2s;
+    animation-iteration-count: 1;
+    animation-fill-mode: backwards;
+    right: 15%; 
+    transform: rotate(-360deg);
+}
+
+@keyframes chopper {
+    0% {right: -600px; transform: rotate(20deg)}
+    100% {transform: rotate(-360deg);}
+}
+
+/* Prices */
+
+.pricetable {
+    margin-top: -35px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.pricetable .firstpart {
+    float: left;
+    margin-top: 60px;
+}
+
+
+.pricetable .firstpart .pricefrom {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 13px;
+    margin-top: 35px;
+}
+
+.pricetable .firstpart .pricefrom .big {
+    font-size: 20px;
+    color: #be0000;
+    font-style: normal;
+}
+
+.pricetable .firstpart .star {
+    color: #be0000;
+}
+
+.pricetable .firstpart .afterstar {
+    font-style: italic;
+    font-family: 'Lora', serif;
+    color: #666666;
+    font-size: 11px;
+    margin-top: 7px;
+}
+
+.pricetable .priceItem {
+    display: flex;
+    width: 190px;
+    height: 330px;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-size: 190px 330px;
+}
+
+.pricetable .priceItem:nth-of-type(2) {background-image: url(../img/bloodsplat1.png);}
+.pricetable .priceItem:nth-of-type(3) {background-image: url(../img/bloodsplat2.png);}
+.pricetable .priceItem:nth-of-type(4) {background-image: url(../img/bloodsplat3.png);}
+.pricetable .priceItem:nth-of-type(5) {background-image: url(../img/bloodsplat4.png);}
+.pricetable .priceItem:nth-of-type(6) {background-image: url(../img/bloodsplat2.png);}
+
+.pricetable .priceItem .people {
+    justify-content: center;
+    display: flex;
+    margin-right: 5px;
+    flex-direction: column;
+    align-items: center;
+    align-content: center;
+}
+
+.pricetable .priceItem .people span img {
+    max-width: 15px;
+    height: auto;
+}
+
+.pricetable .priceItem .people span {
+    font-style: italic;
+    font-weight: 700;
+    font-family: 'Lora', serif;
+    font-size: 14px;
+}
+
+.pricetable .priceItem .people div {
+    font-style: italic;
+    font-weight: 700;
+    font-family: 'Lora', serif;
+    font-size: 13px;
+    line-height: 0;
+    margin-top: 2px;
+}
+
+.pricetable .priceItem .money {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.pricetable .priceItem .money .price-tag {
+    font-weight: bold;
+    text-align: center;
+    font-size: 23px;
+    font-style: italic;
+    font-family: 'Lora', serif;
+}
+
+.pricetable .priceItem .money .per-person {
+    font-size: 12px;
+    color: #531d1d;
+    display: block;
+    text-align: center;
+    margin-top: -5px;
+    font-style: italic;
+    font-weight: bold;
+    font-family: 'Lora', serif;
+}
+
+footer {
+    background: transparent;
+}
+
+/* Media Queries */
+@media all and (max-width: 1280px) {
+    h1 {font-size: 30px;}
+    h2 {font-size: 22px;}
+    h4 {font-size: 14px;}
+    
+    main.title {
+        height: 420px;
+        background-size: 1600px auto;
+        background-position: top center;
+    }
+
+    .about .primary-info .desc {
+        font-size: 14px;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    main.title, main.basic {
+        box-sizing: border-box;
+    }
+
+    main.title .container .roomdetails {
+        margin-bottom: 40px;
+    }
+
+    header {
+        box-sizing: border-box;
+    }
+
+    .about {
+        flex-wrap: wrap;
+    }
+
+    .about .primary-info {
+        border-right: 0;
+        padding-right: 0px;
+    }
+
+    .about .secondary-info {
+        padding-left: 0px;
+    }
+
+    .field .desc {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .field .desc div.terms-before-playing-image {
+        background-size: 100%;
+        max-width: 441px;
+        max-height: 372px;
+        width: 100%;
+        min-height: 100%;
+    }
+
+    .field .desc .icons {
+        flex-wrap: wrap;
+    }
+
+    .field .desc .icons div {
+        margin-top: 10px;
+        flex-basis: 140px;
+    }
+
+    .field .desc .icons div .icon img {
+        width: 90px;
+    }
+
+    .field .desc .icons div .iconText {
+        font-size: 13px;
+    }
+
+    main.title {
+        background-size: 1500px auto;
+    }
+
+    main.title .container .roomdetails {
+        flex-wrap: wrap;
+        align-items: initial;
+        justify-content: center;
+    }
+
+    main.title .container .roomdetails span:first-child {
+        display: none;
+    }
+
+    main.title .container .roomdetails span:nth-child(2) {
+        margin-right: 10px;
+    }
+
+    main.title .container .roomdetails span i {
+        margin-left: 0px;
+    }
+
+    h1 {font-size: 26px; text-align: center;}
+    hr.separator {display: none;}
+
+    .field .desc div:last-child {
+        padding: 0;
+    }
+
+    /* Calendar */
+    .reservation {position: relative;}
+    .reservation .calendarTable {display: flex;flex-direction: column; width: initial;}
+    .reservation .calendarTable .day {width: 100%; text-align: left; position: relative;}
+    
+    .reservation .calendarTable .day .availableOperators {
+        position: absolute;
+        top: 0px;
+        top: 18px;
+        right: 9px;
+        margin-bottom: 0px;
+        border: 0;
+    }
+
+    .reservation .calendarTable .day .weekDay {
+        height: 30px;
+        line-height: 30px;
+        background-color: #1b1b1b; 
+        margin-bottom: 0px;
+        padding: 0 5px;
+        margin-top: 15px;
+    }
+
+    .reservation .calendarTable .day .date::before, main .container .calendarTable .day .date{background-color: #1b1b1b; padding: 5px;padding-top: 0px;}
+    .reservation .calendarTable .day .date {margin-bottom: 15px;}
+    .reservation .calendarTable .day .date::before, main .container .calendarTable .day .date::after {content: initial;}
+    .reservation .calendarTable .day .hours div {display: inline-block; width: 70px; text-align: center; height: 30px;}
+
+    .reservation .calendarTable .arrow {
+        position: absolute;
+        top: -2px;
+        margin: 0 auto;
+        transform: translateY(0%);
+        right: 15px;
+    }
+    .reservation .calendarTable .arrow:nth-child(1) {
+        margin-left: 0px;
+    }
+    .reservation .calendarTable .arrow:nth-child(1):before {
+        content: "Назад";
+        position: absolute;
+        left: 20px;
+        font-size: 13px;
+        top: 13px;
+    }
+
+    .reservation .calendarTable .arrow:nth-child(3n) {
+        left: 15px;
+        right: initial;
+    }
+    .reservation .calendarTable .arrow:nth-child(3n):before {
+        content: "Назад";
+        position: absolute;
+        left: 25px;
+        font-size: 13px;
+        top: 13px;
+    }
+    .reservation .calendarTable .nextWeek:before {
+        content: "Напред";
+        position: absolute;
+        left: -45px;
+        font-size: 13px;
+        top: 13px;
+    }
+    .reservation .calendarTable .arrow i {font-size: 25px;}
+    .pricetable {flex-wrap: wrap;}
+    .pricetable .priceItem {
+        margin-top: -70px;
+        margin-bottom: -70px;
+    }
+    .pricetable .firstpart {width: 100%; text-align: left;}
+    .about .secondary-info {width: 100%; min-width: 100px;}
+    
+    /* Booking */
+    .modalR .modalContainer {max-height: 90%;padding: 30px 20px;overflow:scroll;width: 90%;}
+    .modalR .modalContainer .closeButton {top: 0;right: 0; border: 0;}
+    .modalR .modalContainer .heading {width: 100%;font-size:13px;}
+    .modalR .modalContainer .half .textField {padding-left: 0px;}
+    .modalR .modalContainer .half input, .modalR .modalContainer .half select {width: 90%;margin-left:0px;margin-right:0px; height:25px;}
+    .modalR .modalContainer .half {font-size: 11px;}
+    .modalR .modalContainer button {width: 100%;height: 31px;float: initial; width: 95%;}
+    .modalR .chopper {display:none;}
+}
+
+/* Calendar Spinner */
+.calendarTable {
+    position: relative;
+}
+
+.lds-roller {
+    display: none;
+    position: absolute;
+    width: 64px;
+    height: 64px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .lds-roller div {
+    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    transform-origin: 32px 32px;
+  }
+  .lds-roller div:after {
+    content: " ";
+    display: block;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #be0000;
+    margin: -3px 0 0 -3px;
+  }
+  .lds-roller div:nth-child(1) {
+    animation-delay: -0.036s;
+  }
+  .lds-roller div:nth-child(1):after {
+    top: 50px;
+    left: 50px;
+  }
+  .lds-roller div:nth-child(2) {
+    animation-delay: -0.072s;
+  }
+  .lds-roller div:nth-child(2):after {
+    top: 54px;
+    left: 45px;
+  }
+  .lds-roller div:nth-child(3) {
+    animation-delay: -0.108s;
+  }
+  .lds-roller div:nth-child(3):after {
+    top: 57px;
+    left: 39px;
+  }
+  .lds-roller div:nth-child(4) {
+    animation-delay: -0.144s;
+  }
+  .lds-roller div:nth-child(4):after {
+    top: 58px;
+    left: 32px;
+  }
+  .lds-roller div:nth-child(5) {
+    animation-delay: -0.18s;
+  }
+  .lds-roller div:nth-child(5):after {
+    top: 57px;
+    left: 25px;
+  }
+  .lds-roller div:nth-child(6) {
+    animation-delay: -0.216s;
+  }
+  .lds-roller div:nth-child(6):after {
+    top: 54px;
+    left: 19px;
+  }
+  .lds-roller div:nth-child(7) {
+    animation-delay: -0.252s;
+  }
+  .lds-roller div:nth-child(7):after {
+    top: 50px;
+    left: 14px;
+  }
+  .lds-roller div:nth-child(8) {
+    animation-delay: -0.288s;
+  }
+  .lds-roller div:nth-child(8):after {
+    top: 45px;
+    left: 10px;
+  }
+  @keyframes lds-roller {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }

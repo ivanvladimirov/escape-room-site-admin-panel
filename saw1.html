@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>SawRoom / Admin Panel</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js">
+</head>
+<body>
+    <div class="modal">
+        <div class="modalContainer">
+            <div class="heading">
+                Sign In
+            </div>
+            <form id="loginForm">
+                <input type="email" placeholder="Username" id="loginEmail" required>
+                <input type="password" placeholder="Password" id="loginPassword" required>
+                
+                <button class="login">Sign In</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="confirmDialog"></div>
+    
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.2.0/firebase-functions.js"></script>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyB6vVkAtBopUCCkbrbdtjVBoKby4xd1nRA",
+            authDomain: "sawroomthebeginning.firebaseapp.com",
+            databaseURL: "https://sawroomthebeginning.firebaseio.com",
+            projectId: "sawroomthebeginning",
+            storageBucket: "sawroomthebeginning.appspot.com",
+            messagingSenderId: "532529791907",
+            appId: "1:532529791907:web:e3bc67860e741e19"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        const functions = firebase.functions();
+        const sawroomDB = db.collection("SawRoom").doc("SawRoom");
+        const firstOperator = `<select class="operator firstOperator"><option id="op1" value="">--</option><option id="op1">Жоро</option><option id="op1">Оги</option></select>`
+        const secondOperator = `<select class="operator secondOperator"><option id="op2" value="">--</option><option id="op2">Жоро</option><option id="op2">Оги</option></select>`
+        const allOperators = ["Жоро", "Оги"];
+
+        // Count all groups and money
+        let groupsCounter = [1, 1];
+        let moneyCounter = [0, 0];
+        let moneyFromGroup = 20;
+        let operatorColors = ["#4a90e2", "#39caba"];
+
+        
+
+        function msToHours(duration) {
+            let minutes = Math.floor((duration / (1000 * 60)) % 60),
+                hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+
+            hours = (hours < 10) ? "0" + hours : hours;
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+
+            return hours + ":" + minutes;
+        }
+
+        // All the times are in milliseconds
+        // How much is the gap between the hours
+        const gapBetweenNextHour = 6300000;
+        // When is the first hour
+        const firstHour = 62100000;
+        // When is the last hour
+        const lastHourInLocale = msToHours(74700000); // Change this and "lastHour" respectively
+        const lastHour = 74700000;
+
+        // Prices
+        const prices = [90, 110, 120, 130];
+    </script>
+    <script src="saw.js"></script>
+    <script src="auth.js"></script>
+</body>
+</html>
